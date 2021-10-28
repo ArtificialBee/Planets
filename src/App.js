@@ -10,7 +10,7 @@ function App() {
   const [page, setPage] = useState('planets')
 
   return (
-    <div className="App">
+    <div >
       <h1 style={{ textAlign: "center" }}>Star Wars Info</h1>
       <Navbar setPage={setPage}></Navbar>
       {page === 'planets' ? <Planets /> : <People />}

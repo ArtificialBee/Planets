@@ -6,6 +6,5 @@ export const Button = styled.button`
     color:${({ color }) => color};
     background:${({ bgColor }) => bgColor};
     border:0;
-    /* outline:0; */
     cursor:pointer;
 `;

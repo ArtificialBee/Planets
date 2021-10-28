@@ -11,11 +11,20 @@ const Nav = styled.nav`
     justify-content: space-between;
 `;
 
+const NavButton = styled(Button)`
+    color:white;
+    background:#6188ff;
+    transition: all 500ms;
+    &:hover{
+        background:#8ca9ff;
+    }
+`;
+
 const Navbar = ({ setPage }) => {
     return (
         <Nav>
-            <Button bgColor="#6188ff" onClick={() => setPage('planets')}>Planets</Button>
-            <Button bgColor="#6188ff" onClick={() => setPage('people')}>People</Button>
+            <NavButton onClick={() => setPage('planets')}>Planets</NavButton>
+            <NavButton onClick={() => setPage('people')}>People</NavButton>
         </Nav>
     );
 }
