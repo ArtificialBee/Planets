@@ -8,7 +8,7 @@ const fetchPeople = async () => {
 
 const People = () => {
 
-    const { data, status } = useQuery('planets', fetchPeople);
+    const { data, status } = useQuery('peoples', fetchPeople);
     console.log(data);
 
     let peopleStatus = null;
@@ -17,7 +17,7 @@ const People = () => {
         peopleStatus = <p>Error with loading</p>
     }
     if (status === "loading") {
-        peopleStatus = <p>Loading planets...</p>
+        peopleStatus = <p>Loading peoples...</p>
     }
     if (status === "success") {
         peopleStatus = data.results.map(people => {
@@ -27,6 +27,7 @@ const People = () => {
     return (
         <div>
             <h1 style={{ fontWeight: "400" }}>This is people component!</h1>
+            {peopleStatus}
         </div>
     );
 }

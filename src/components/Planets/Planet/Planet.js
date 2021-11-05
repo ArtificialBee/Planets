@@ -1,15 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
 import { FiUsers } from 'react-icons/fi'
 
-const PlanetStyle = styled.div`
+import { Card } from '../../../style';
 
-    align-items:center;
-    height:150px;
-    /* background:black; */
-    border-radius: 20px;
-    margin:30px 0;
+const ShowPlanet = keyframes`
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:0.7;
+    }
+`;
+
+const PlanetStyle = styled(Card)`
     background: linear-gradient(90deg, rgba(6,57,54,1) 0%, rgba(12,120,113,1) 100%);
+    opacity:0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    animation:${ShowPlanet} 1s linear ${({ animationDelay }) => animationDelay + "ms"} forwards;
 `;
 
 const PlanetTitle = styled.h1`
@@ -17,36 +27,50 @@ const PlanetTitle = styled.h1`
     text-align:center;
     font-weight: 400;
     font-size: 20px;
+    padding-top:10px;
 `;
 
 const PlanetPopulation = styled.div`
-    width:100px;
+    width:100%;
     color:gray;
     display:flex;
     align-items: center;
-    margin:0 auto;
+    justify-content: center;
 `;
 
 const Icon = styled.div`
-    display:inline-block;
     padding-right:10px;
 `;
 
 const PopulationCount = styled.p`
-    display:inline-block;
 `;
 
-const Planet = ({ planet }) => {
+const Planet = ({ planet, animDelay }) => {
+
+    const units = ["k", "M", "B"];
+    let population = planet.population;
+
+    if (population >= 1000000000) {
+        population /= 1000000000;
+        population = population.toString();
+        population = population + "B"
+    }
+    else if (population >= 1000000) {
+        population = (population / 1000000).toString() + "M";
+    }
+    else if (population >= 1000) {
+        population = (population / 1000).toString() + "k";
+    }
 
     return (
-        <PlanetStyle>
+        <PlanetStyle animationDelay={animDelay}>
             <PlanetTitle>Name: {planet.name}</PlanetTitle>
             <PlanetPopulation>
                 <Icon>
                     <FiUsers />
                 </Icon>
                 <PopulationCount>
-                    {planet.population}
+                    {population}
                 </PopulationCount>
             </PlanetPopulation>
         </PlanetStyle>

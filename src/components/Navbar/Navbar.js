@@ -18,6 +18,9 @@ const NavButton = styled(Button)`
     &:hover{
         background:#8ca9ff;
     }
+    border-radius:30px;
+    border:0;
+    outline:0;
 `;
 
 const Navbar = ({ setPage }) => {
